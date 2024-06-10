@@ -35,6 +35,7 @@ app.post("/add-company", async (req, res) => {
 
 app.get("/", async (req, res) => {
   try {
+    console.log("hello");
     const companies = await Company.find();
     res.status(200).json(companies);
   } catch (error) {
