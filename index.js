@@ -37,6 +37,7 @@ app.get("/", async (req, res) => {
   try {
     const companies = await Company.find();
     res.status(200).json(companies);
+    console.log(companies);
   } catch (error) {
     console.log(error);
     res.status(500).send("Error fetching Data");
