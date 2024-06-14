@@ -3,9 +3,10 @@ const mongoose = require("mongoose");
 const fs = require("fs");
 const path = require("path");
 const Company = require("./models/company");
+const cors = require("cors");
 
 const app = express();
-
+app.use(cors());
 app.use(express.json());
 
 mongoose
@@ -37,7 +38,7 @@ app.get("/", async (req, res) => {
   try {
     const companies = await Company.find();
     res.status(200).json(companies);
-    console.log(companies);
+    console.log(companies.filter((i) => i.intensity !== null).length);
   } catch (error) {
     console.log(error);
     res.status(500).send("Error fetching Data");
